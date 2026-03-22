@@ -153,7 +153,7 @@ return (
 
 > "DOM 노드는 최소한으로"
 
-가장 중요한 포인트는 세 가지입니다. **스크롤 컨테이너(Parent)**, **전체 높이를 가진 공간(Canva)**, 그리고 실제로 보여줄 items입니다.
+가장 중요한 포인트는 세 가지입니다. **스크롤 컨테이너(Parent)**, **전체 높이를 가진 공간**, 그리고 실제로 보여줄 items입니다.
 
 ```jsx
 import { useVirtualizer } from "@tanstack/react-virtual";
@@ -204,6 +204,46 @@ function VirtualList() {
     </div>
   );
 }
+```
+
+### Router - React Router의 타입 불안전성
+
+> 타입 안전한 라우팅이 왜 없지?
+
+TanStack Router는 공식적으로 **파일 기반 라우팅**을 권장합니다. Vite 플러그인을 통해 파일 구조가 곧 라우트 트리가 됩니다.
+
+```jsx
+// src/routes/posts.$postId.tsx
+import { createFileRoute, Link } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/posts/$postId")({
+  component: PostComponent,
+});
+
+function PostComponent() {
+  const { postId } = Route.useParams(); // 자동 완성 및 타입 추론 지원
+
+  return (
+    <div>
+      <h1>Post ID: {postId}</h1>
+      {/* 존재하지 않는 경로 입력 시 TS 에러 발생 */}
+      <Link to="/about">About으로 이동</Link>
+    </div>
+  );
+}
+```
+
+TanStack router는 URL 뒤에 붙는 `?page=1`과 같은 쿼리 스트링을 **Zod** 등을 함께 사용해서 더 철저한 검증을 할 수 있습니다.
+
+```jsx
+const postsSearchSchema = z.object({
+  page: z.number().catch(1),
+  filter: z.string().optional(),
+});
+
+export const Route = createFileRoute("/posts")({
+  validateSearch: postsSearchSchema, // URL 파라미터를 객체처럼 검증 및 타입화
+});
 ```
 
 ## Headless UI
