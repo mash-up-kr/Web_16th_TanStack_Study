@@ -348,10 +348,10 @@ type DataTag<TType, TValue> = TType & {
 
 ```tsx
 // 통과 전
-["user", string][
-  // 통과 후 — 타입 레벨에서만
-  ("user", string)
-] & { [dataTagSymbol]: User };
+['user', string]
+
+// 통과 후 — 타입 레벨에서만
+['user', string] & { [dataTagSymbol]: User }
 //                   ↑ "이 키로 꺼내면 User 나온다"는 정보가 붙음
 ```
 
