@@ -52,3 +52,23 @@
 3. `main` 브랜치로 **Pull Request**를 생성합니다. (PR 제목: `docs: [N주차] 이름 - 학습 주제`)
 4. 스터디 완료 후 다른 사람의 PR에 코멘트를 작성합니다.
 5. PR은 마지막에 확인(approve)한 사람이 머지(merge)를 진행해주세요.
+
+## 주차별 주제
+
+- `1주차` - TanStack의 설계 철학 & 탄생 배경
+  - Query/Router/Table/Virtual 각각 왜 만들었는지, 기존 솔루션의 어떤 불편함을 해결했는지
+  - Headless / Framework-agnostic 전략을 왜 택했는지
+- `2주차` - Query
+  - Observer 패턴 기반 상태 구독 구조 (QueryObserver 내부 흐름)
+  - staleTime / gcTime / invalidation 캐시 생애주기
+- `3주차` - Router
+  - 타입-세이프 라우팅 구조 (params/search 타입 추론 원리)
+  - Loader와 데이터 프리패칭 전략, Query와의 통합 패턴
+- `4주차` - Table
+  - Headless 구조와 렌더링 최적화 원리
+  - 상태 관리 분리, 리렌더링 최소화 방식
+- `5주차` - Virtual
+  - 가상화 핵심 원리 (overscan, measureElement, 동적 높이 처리)
+  - Table과의 결합 패턴, 행/열 가상화 내부 계산 방식
+- `6주차` - Intent
+- `7주차` - Start
